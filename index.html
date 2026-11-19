@@ -79,6 +79,36 @@
             transform: translateY(0);
         }
 
+        /* WOW vstup pre hero fotku hneď po načítaní */
+        @keyframes hero-photo-in {
+            0% {
+                opacity: 0;
+                transform: translateY(18px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .hero-photo-animate {
+            animation: hero-photo-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Animácia prepínania citátov */
+        @keyframes quote-fade-slide {
+            0% {
+                opacity: 0;
+                transform: translateX(14px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .quote-slide-active {
+            animation: quote-fade-slide 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
         /* Jemný pulzujúci efekt pre dôležité tlačidlá */
         @keyframes pulse-subtle {
             0%, 100% { box-shadow: 0 0 0 0 rgba(85, 107, 47, 0.4); }
@@ -157,45 +187,123 @@
     <!-- =====================================================================
          2. HLAVNÝ BANNER (HERO SECTION)
     ====================================================================== -->
-    <section class="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/70 pt-16 pb-24 lg:pt-24 lg:pb-32 overflow-hidden border-b border-slate-200/60">
+    <section class="relative bg-gradient-to-b from-slate-50 via-white to-slate-50/70 pt-10 pb-24 lg:pt-14 lg:pb-28 overflow-x-clip border-b border-slate-200/60">
         <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/4 w-96 h-96 bg-brand-red/5 rounded-full blur-3xl pointer-events-none animate-pulse"></div>
         <div class="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/4 w-96 h-96 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center mb-16">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10 items-start mb-16">
                 <!-- Ľavá strana: Osobný úvodný text -->
                 <div class="lg:col-span-7 text-center lg:text-left reveal-on-scroll">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-redLight border border-brand-red/15 text-brand-red text-xs font-bold uppercase tracking-widest mb-6 shadow-sm">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-redLight border border-brand-red/15 text-brand-red text-xs font-bold uppercase tracking-widest mb-5 shadow-sm">
                         <span class="w-2 h-2 rounded-full bg-brand-red animate-ping"></span>
                         REDMIT • Katarína Pischel
                     </div>
 
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-slate tracking-tight leading-[1.2] mb-6">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-slate tracking-tight leading-[1.18] mb-6">
                         Nemčinu neučím. <br><span class="text-brand-red inline-block hover:scale-105 transition-transform duration-300">Nemčinou žijem.</span>
                     </h1>
 
-                    <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-6">
-                        Nemčina nie je len o gramatike a slovíčkach. Je o ľuďoch, rozhovoroch a príležitostiach. Už viac ako 25 rokov je súčasťou môjho života. A rada vám ukážem, ako sa v nej môžete cítiť doma aj vy.
-                    </p>
+                    <div class="text-base sm:text-lg text-slate-600 leading-relaxed mb-8 space-y-4">
+                        <p>Som Katarína Pischel. Som Slovenka, ktorá hovorí po nemecky tak prirodzene, že ma v Nemecku považujú za Nemku. Dokonca aj môj manžel, rodený Nemec, si pri našom prvom stretnutí nebol istý, odkiaľ pochádzam.</p>
+                        <p>Nemčinu som dokázala prirodzene odovzdať aj svojej dcére, hoci vyrastala v slovenskom jazykovom prostredí.</p>
+                        <p>Milujem rozhovory s ľuďmi. Dokážem sa s tebou po nemecky rozprávať na akúkoľvek tému. O tom, čo ťa baví, čo ťa zaujíma, čím žiješ.</p>
+                        <p>Žiadne bezduché memorovanie. Skutočné rozhovory, živá nemčina a radosť z toho, že sa dokážeš vyjadriť.</p>
+                        <p>Žijem medzi Slovenskom a Nemeckom, veľmi dobre poznám mentalitu oboch krajín a viem, ako Nemci skutočne komunikujú. Vychádzam z vlastných skúseností, z toho, čo sama žijem, a zo situácií, ktoré prináša každodenný život v Nemecku.</p>
+                        <p>Chcem ťa rozrozprávať, nadchnúť pre nemčinu a ukázať ti, že už od začiatku sa aj s úplne jednoduchými vetami dá viesť skvelý rozhovor.</p>
+                        <p class="font-semibold text-brand-red">Nemusíte hovoriť dokonale, aby ste mohli začať hovoriť s radosťou!</p>
+                    </div>
 
-                    <!-- Vložený dopytovaný text presne pod prvým textom -->
-                    <div class="mb-8 p-6 rounded-2xl bg-white border-2 border-brand-red/30 shadow-md relative overflow-hidden group hover:border-brand-red transition-all">
-                        <div class="absolute top-0 right-0 bg-brand-red text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-bl-xl">
-                            1 na 1 • Online
-                        </div>
-                        <h3 class="text-lg font-extrabold text-brand-slate mb-2">Individuálne hodiny nemčiny</h3>
-                        <p class="text-sm font-semibold text-brand-gold uppercase tracking-wider mb-2">Výhradne online</p>
-                        <p class="text-sm text-slate-600 mb-4">
-                            Individuálne hodiny nemčiny výhradne online – pre deti, tínedžerov aj dospelých.
-                        </p>
-                        <div class="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-100">
+                    <!-- Animovaný prepínač citátov rodiny na pôvodnom mieste -->
+                    <div id="family-quotes-box" class="mb-8 text-left">
+                        <div class="flex flex-wrap items-end justify-between gap-3 mb-4">
                             <div>
-                                <span class="text-2xl font-extrabold text-brand-slate">22,00 €</span>
-                                <span class="block text-xs text-slate-500 mt-0.5">60 minút · Rezervácia termínu v kalendári</span>
+                                <span class="text-xs font-bold uppercase tracking-widest text-brand-red">Pohľad zblízka</span>
+                                <h3 class="text-xl sm:text-2xl font-bold text-brand-slate mt-1">Čo o mojej nemčine hovorí moja rodina</h3>
                             </div>
-                            <button type="button" onclick="prefillContact('Individuálna konverzačná hodina (22 €)', 'Dobrý deň, mám záujem o individuálnu konverzačnú hodinu (22 €) a chcem si rezervovať termín v kalendári.')" class="px-5 py-2.5 text-sm font-semibold text-white bg-brand-red rounded-xl hover:bg-brand-redDark hover:scale-105 transition-all shadow-sm">
-                                Vybrať si termín
-                            </button>
+                            <!-- Ovládacie prvky (šípky + indikátory) -->
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="prevFamilyQuote()" aria-label="Predchádzajúci citát" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-brand-red hover:text-brand-red hover:bg-brand-redLight/40 flex items-center justify-center transition shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                                </button>
+                                <button type="button" onclick="nextFamilyQuote()" aria-label="Ďalší citát" class="w-9 h-9 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-brand-red hover:text-brand-red hover:bg-brand-redLight/40 flex items-center justify-center transition shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Slidy citátov -->
+                        <div class="relative">
+                            <!-- Slide 1: Citát manžela (DE + SK) -->
+                            <div class="family-quote-slide quote-slide-active p-6 sm:p-7 rounded-2xl bg-white border border-slate-200/90 shadow-md flex flex-col justify-between space-y-4">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between gap-2 text-brand-red">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-5 h-5 opacity-75" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                                            <span class="text-[11px] font-bold uppercase tracking-widest text-slate-400">Originál (DE) & Preklad (SK)</span>
+                                        </div>
+                                        <span class="text-[11px] font-semibold text-slate-400">1 / 2</span>
+                                    </div>
+                                    <blockquote class="text-xs sm:text-sm text-slate-700 italic leading-relaxed border-l-2 border-brand-red/40 pl-3.5">
+                                        „Als ich Katka zum ersten Mal in der Slowakei traf, sprach ich sie auf Englisch an. Sie antwortete mir auf Deutsch – so natürlich, dass ich mich tatsächlich fragte: Wo bin ich denn hier gelandet? Ist sie etwa Deutsche? Das war eine wirklich schöne Überraschung!“
+                                    </blockquote>
+                                    <blockquote class="text-xs sm:text-sm text-brand-slate leading-relaxed">
+                                        „Keď som Katku prvýkrát stretol na Slovensku, oslovil som ju po anglicky. Odpovedala mi po nemecky – tak prirodzene, že som si naozaj položil otázku: Kde som sa to vlastne ocitol? Žeby bola Nemka? Bolo to naozaj milé prekvapenie!“
+                                    </blockquote>
+                                </div>
+                                <div class="pt-3.5 border-t border-slate-200/80 flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-brand-redLight text-brand-red font-heading font-bold text-xs flex items-center justify-center shrink-0">
+                                            M
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-xs sm:text-sm text-brand-slate">Manžel</p>
+                                            <p class="text-[11px] text-slate-500">rodený Nemec</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="goToFamilyQuote(1)" class="text-xs font-semibold text-brand-red hover:text-brand-redDark inline-flex items-center gap-1 transition">
+                                        Prečítať pohľad dcéry Stelly
+                                        <span>→</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Citát dcéry Stelly -->
+                            <div class="family-quote-slide hidden p-6 sm:p-7 rounded-2xl bg-brand-redLight/60 border border-brand-red/25 shadow-md flex flex-col justify-between space-y-4">
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between gap-2 text-brand-red">
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-5 h-5 opacity-75" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-red/80">Z pohľadu dcéry</span>
+                                        </div>
+                                        <span class="text-[11px] font-semibold text-brand-red/70">2 / 2</span>
+                                    </div>
+                                    <blockquote class="text-sm sm:text-base text-brand-slate leading-relaxed">
+                                        „Mamka so mnou od malička rozprávala po nemecky. Najprv som jej odpovedala po slovensky, ale ona sa so mnou naďalej rozprávala po nemecky. Postupne som jej aj ja začala odpovedať po nemecky. Dnes je pre mňa nemčina rovnako prirodzená ako slovenčina. A keď chceme, aby nám ostatní nerozumeli, máme svoju vlastnú tajnú reč.“
+                                    </blockquote>
+                                </div>
+                                <div class="pt-3.5 border-t border-brand-red/15 flex items-center justify-between gap-3">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-brand-red text-white font-heading font-bold text-xs flex items-center justify-center shrink-0">
+                                            S
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-xs sm:text-sm text-brand-slate">Stella</p>
+                                            <p class="text-[11px] text-slate-600">dcéra</p>
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="goToFamilyQuote(0)" class="text-xs font-semibold text-brand-red hover:text-brand-redDark inline-flex items-center gap-1 transition">
+                                        <span>←</span>
+                                        Späť na pohľad manžela
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bodky prepínača -->
+                        <div class="flex items-center justify-center lg:justify-start gap-2 mt-3.5">
+                            <button type="button" onclick="goToFamilyQuote(0)" aria-label="Citát manžela" class="family-quote-dot h-2 w-7 rounded-full bg-brand-red transition-all duration-300"></button>
+                            <button type="button" onclick="goToFamilyQuote(1)" aria-label="Citát dcéry Stelly" class="family-quote-dot h-2 w-2.5 rounded-full bg-slate-300 hover:bg-brand-red/60 transition-all duration-300"></button>
                         </div>
                     </div>
 
@@ -212,19 +320,25 @@
                     </div>
                 </div>
 
-                <!-- Pravá strana: Úvodná fotografia katarina.png -->
-                <div class="lg:col-span-5 flex justify-center reveal-on-scroll">
-                    <div class="relative w-full max-w-sm group">
-                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-brand-red/20 via-brand-gold/20 to-transparent blur-md group-hover:blur-lg transition-all duration-500"></div>
-                        <div class="relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xl aspect-[4/5] group-hover:scale-[1.02] transition-transform duration-500">
+                <!-- Pravá strana: Úvodná fotografia katarina.png umiestnená vyššie pre okamžitý WOW dojem -->
+                <div class="lg:col-span-5 flex justify-center lg:justify-end lg:sticky lg:top-24 hero-photo-animate">
+                    <div class="relative w-full max-w-md group">
+                        <div class="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-brand-red/25 via-brand-gold/25 to-transparent blur-lg group-hover:blur-xl transition-all duration-500"></div>
+                        <div class="relative rounded-3xl overflow-hidden bg-white border-2 border-white shadow-2xl aspect-[4/5] group-hover:scale-[1.015] transition-transform duration-500">
                             <img 
                                 src="katarina.png" 
                                 alt="Katarína Pischel – lektorka REDMIT" 
-                                class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
                             >
-                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent p-5 text-white">
-                                <p class="font-heading font-bold text-lg">Katarína Pischel</p>
-                                <p class="text-xs text-slate-200">Vaša lektorka a sprievodkyňa nemčinou</p>
+                            <div class="absolute top-4 left-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-brand-slate text-[11px] font-bold shadow-sm">
+                                    <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+                                    25+ rokov s nemčinou
+                                </span>
+                            </div>
+                            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-900/95 via-slate-900/55 to-transparent p-6 text-white">
+                                <p class="font-heading font-extrabold text-xl tracking-tight">Katarína Pischel</p>
+                                <p class="text-xs sm:text-sm text-slate-200 mt-0.5">Vaša lektorka a sprievodkyňa nemčinou</p>
                             </div>
                         </div>
                     </div>
@@ -1341,6 +1455,68 @@
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
         });
+    });
+
+    /* Animovaný prepínač citátov rodiny */
+    let currentFamilyQuoteIndex = 0;
+    let familyQuoteInterval = null;
+
+    function goToFamilyQuote(index) {
+        const slides = document.querySelectorAll('.family-quote-slide');
+        const dots = document.querySelectorAll('.family-quote-dot');
+        if (!slides.length) return;
+
+        currentFamilyQuoteIndex = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            if (i === currentFamilyQuoteIndex) {
+                slide.classList.remove('hidden', 'quote-slide-active');
+                void slide.offsetWidth;
+                slide.classList.add('quote-slide-active');
+            } else {
+                slide.classList.add('hidden');
+                slide.classList.remove('quote-slide-active');
+            }
+        });
+
+        dots.forEach((dot, i) => {
+            if (i === currentFamilyQuoteIndex) {
+                dot.classList.remove('w-2.5', 'bg-slate-300', 'hover:bg-brand-red/60');
+                dot.classList.add('w-7', 'bg-brand-red');
+            } else {
+                dot.classList.remove('w-7', 'bg-brand-red');
+                dot.classList.add('w-2.5', 'bg-slate-300', 'hover:bg-brand-red/60');
+            }
+        });
+    }
+
+    function nextFamilyQuote() {
+        goToFamilyQuote(currentFamilyQuoteIndex + 1);
+    }
+
+    function prevFamilyQuote() {
+        goToFamilyQuote(currentFamilyQuoteIndex - 1);
+    }
+
+    function startFamilyQuoteAutoplay() {
+        stopFamilyQuoteAutoplay();
+        familyQuoteInterval = setInterval(nextFamilyQuote, 7000);
+    }
+
+    function stopFamilyQuoteAutoplay() {
+        if (familyQuoteInterval) {
+            clearInterval(familyQuoteInterval);
+            familyQuoteInterval = null;
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const quotesBox = document.getElementById('family-quotes-box');
+        if (quotesBox) {
+            startFamilyQuoteAutoplay();
+            quotesBox.addEventListener('mouseenter', stopFamilyQuoteAutoplay);
+            quotesBox.addEventListener('mouseleave', startFamilyQuoteAutoplay);
+        }
     });
 
     // Funkcia na skopírovanie emailu kliknutím s vizuálnou odozvou
