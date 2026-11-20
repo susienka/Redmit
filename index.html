@@ -305,8 +305,8 @@
 
                         <!-- Bodky prepínača -->
                         <div class="flex items-center justify-center lg:justify-start gap-2 mt-3.5">
-                            <button type="button" onclick="goToFamilyQuote(0)" aria-label="Citát manžela" class="family-quote-dot h-2 w-7 rounded-full bg-brand-red transition-all duration-5000"></button>
-                            <button type="button" onclick="goToFamilyQuote(1)" aria-label="Citát dcéry Stelly" class="family-quote-dot h-2 w-2.5 rounded-full bg-slate-300 hover:bg-brand-red/60 transition-all duration-5000"></button>
+                            <button type="button" onclick="goToFamilyQuote(0)" aria-label="Citát manžela" class="family-quote-dot h-2 w-7 rounded-full bg-brand-red transition-all duration-300"></button>
+                            <button type="button" onclick="goToFamilyQuote(1)" aria-label="Citát dcéry Stelly" class="family-quote-dot h-2 w-2.5 rounded-full bg-slate-300 hover:bg-brand-red/60 transition-all duration-300"></button>
                         </div>
                     </div>
 
@@ -1459,9 +1459,8 @@
         });
     });
 
-    /* Animovaný prepínač citátov rodiny */
+    /* Prepínač citátov rodiny (iba na kliknutie) */
     let currentFamilyQuoteIndex = 0;
-    let familyQuoteInterval = null;
 
     function goToFamilyQuote(index) {
         const slides = document.querySelectorAll('.family-quote-slide');
@@ -1499,27 +1498,6 @@
     function prevFamilyQuote() {
         goToFamilyQuote(currentFamilyQuoteIndex - 1);
     }
-
-    function startFamilyQuoteAutoplay() {
-        stopFamilyQuoteAutoplay();
-        familyQuoteInterval = setInterval(nextFamilyQuote, 7000);
-    }
-
-    function stopFamilyQuoteAutoplay() {
-        if (familyQuoteInterval) {
-            clearInterval(familyQuoteInterval);
-            familyQuoteInterval = null;
-        }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const quotesBox = document.getElementById('family-quotes-box');
-        if (quotesBox) {
-            startFamilyQuoteAutoplay();
-            quotesBox.addEventListener('mouseenter', stopFamilyQuoteAutoplay);
-            quotesBox.addEventListener('mouseleave', startFamilyQuoteAutoplay);
-        }
-    });
 
     // Funkcia na skopírovanie emailu kliknutím s vizuálnou odozvou
     function copyEmailToClipboard(element) {
